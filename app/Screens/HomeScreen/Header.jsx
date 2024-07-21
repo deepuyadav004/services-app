@@ -14,7 +14,7 @@ const Header = () => {
             <View style={styles.profileContainer} >
                 <Image source={{uri: user?.imageUrl}} style={styles.userImage} />
                 <View>
-                    <Text style={{color: Colors.WHITE, fontSize: 15}} >Welcome, </Text>
+                    <Text style={{color: Colors.WHITE, fontSize: 15, fontFamily: 'outfit-bold'}} >Welcome, </Text>
                     <Text style={{color: Colors.WHITE, fontSize: 20}} >{user?.fullName }</Text>
                 </View>
             </View>
