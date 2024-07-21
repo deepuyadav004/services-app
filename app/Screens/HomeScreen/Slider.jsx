@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet, FlatList, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import getSlider from '../../../constants/GlobalApis';
 import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
@@ -12,7 +12,7 @@ const client = new ApolloClient({
 
 
 export default function Slider() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]); 
   const query = gql`
         query getSlider {
             sliders {
@@ -60,7 +60,33 @@ export default function Slider() {
 
   return (
     <View>
-      <Text>Slider</Text>
+      <Text style={styles.heading} >Offers for you</Text>
+
+      <FlatList
+        data={data}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        renderItem={({item, index}) => (
+          <View style={{marginRight: 20}} >
+            <Image source={{uri:item?.image?.url}} style={styles.sliderImage} />
+          </View>
+        )}
+      
+      />
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  heading:{
+    fontSize: 20,
+    fontFamily: 'outfit-medium',
+    marginBottom: 10
+  },
+  sliderImage: {
+    width: 270,
+    height: 150,
+    borderRadius: 20,
+    objectFit: 'cover'
+  }
+})
