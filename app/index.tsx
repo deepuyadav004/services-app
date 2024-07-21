@@ -1,7 +1,8 @@
-import { Text, View } from "react-native";
 import Login from './Screens/LoginScreen/Login'
-import { Stack, Link } from "expo-router";
 import { SignedIn, SignedOut, useUser, ClerkProvider, ClerkLoaded } from "@clerk/clerk-expo";
+import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
+import TabNavigations from './Navigations/TabNavigations'
 
 const EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_test_dXByaWdodC1qZW5uZXQtNDIuY2xlcmsuYWNjb3VudHMuZGV2JA"
 const publishableKey = EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
@@ -17,7 +18,9 @@ export default function Index() {
   return (
     <>
       <SignedIn>
-        <Text>Hello {user?.emailAddresses[0].emailAddress}</Text>
+        <NavigationContainer independent={true} >
+          <TabNavigations />
+        </NavigationContainer>
       </SignedIn>
 
       <SignedOut> 
