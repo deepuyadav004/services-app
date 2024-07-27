@@ -5,7 +5,7 @@ const Header = ({text, viewAll}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading} >{text}</Text>
-      {viewAll && <Text>{"View all"}</Text>}
+      {viewAll && <Text>View all</Text>}
     </View>
   )
 }

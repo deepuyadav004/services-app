@@ -11,12 +11,12 @@ export default function HomeScreen() {
       {/* Header */}
       <Header />
 
-      <View style={{padding: 20}} >
+      <View style={{ padding: 20 }} >
         {/* Slider */}
         <Slider />
       </View>
 
-      <View style={{padding: 20}}>
+      <View style={{ padding: 20 }}>
         <Category />
       </View>
     </View>
