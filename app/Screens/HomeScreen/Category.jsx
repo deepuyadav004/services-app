@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, FlatList, Image } from 'react-native'
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import fetchCategory from '../../../APIs/categoryData';
 import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
 import Header from '../../Components/Header'
 import { Colors } from '@/constants/Colors';
+import { useNavigation } from '@react-navigation/native';
 const MASTER_URL = 'https://ap-south-1.cdn.hygraph.com/content/clyu45zag01of06w9vm8jst62/master';
 const request = require('requests');
 
@@ -15,6 +16,7 @@ const client = new ApolloClient({
 export default function Category() {
 
   const [data, setData] = useState([]);
+  const navigation = useNavigation()
 
   useEffect(() => {
     fetchCategory().then(res => {
@@ -32,12 +34,14 @@ export default function Category() {
         numColumns={4}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item, index }) => (
-          <View style={{ marginRight: 20, flex: 1, alignItems: 'flex-start' }} >
+          <TouchableOpacity style={{ marginRight: 20, flex: 1, alignItems: 'flex-start' }}
+            onPress={() => navigation.push('business-list', {category: item?.name})}
+          >
             <View style={{ backgroundColor: Colors.LIGHT_GREY, borderRadius: 100 }} >
               <Image source={{ uri: item?.icon?.url }} style={styles.sliderImage} />
             </View>
             <Text style={{ marginTop: 5, fontFamily: 'outfit-medium' }} >{item?.name}</Text>
-          </View>
+          </TouchableOpacity>
         )}
 
       />

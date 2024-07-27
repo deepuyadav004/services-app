@@ -12,7 +12,7 @@ export default function BusinessList() {
         fetchBusinessList().then(res => {
             setData(res?.businessLists);
         })
-        // console.log("data: ", data)
+        console.log("data: ", data)
     }, []);
 
 

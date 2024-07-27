@@ -7,9 +7,13 @@ const client = new ApolloClient({
     cache: new InMemoryCache()
 });
 
-const query = gql`
-        query MyQuery {
-            businessLists {
+
+
+const fetchBusinessListByCategory = async (category) => {
+
+    const query = gql`
+        query MyQuery($categoryName: String) {
+            businessLists(where: {category_some: {Category: {name: $categoryName}}}) {
                 about
                 address
                 contactPerson
@@ -27,19 +31,20 @@ const query = gql`
                 }
             }
         }
-        `
-const fetchBusinessList = async () => {
+    `
+
     try {
         const { data } = await client.query({
-            query: query
+            query: query,
+            variables: { categoryName: category }
         });
-        // console.log("query data: ", data)
+        console.log("adfas: ", data)
         return data;
     } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching businessListByCategory.js:', error);
         throw error;
     }
 };
 
 
-export default fetchBusinessList;
+export default fetchBusinessListByCategory;
