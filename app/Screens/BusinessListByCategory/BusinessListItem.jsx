@@ -6,6 +6,7 @@ export default function BusinessListItem({data}) {
     <View>
         {console.log(data)}
         <Image source={{uri: data?.images?.[0].url}} style={styles.imageStyle} />
+        {console.log("Image URL: ", data?.images)}
       <Text>BusinessListItem</Text>
     </View>
   )

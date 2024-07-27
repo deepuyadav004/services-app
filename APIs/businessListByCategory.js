@@ -10,28 +10,24 @@ const client = new ApolloClient({
 
 
 const fetchBusinessListByCategory = async (category) => {
-
     const query = gql`
         query MyQuery($categoryName: String) {
-            businessLists(where: {category_some: {Category: {name: $categoryName}}}) {
-                about
-                address
-                contactPerson
-                category {
-                ... on Category {
+                businessLists(where: {category_every: {name: $categoryName}}) {
+                    about
+                    address
+                    category {
                     name
+                    }
+                    contactPerson
+                    email
                     id
-                }
-                }
-                email
-                name
-                id
-                images {
-                url
+                    name
+                    images {
+                    url
+                    }
                 }
             }
-        }
-    `
+        `
 
     try {
         const { data } = await client.query({

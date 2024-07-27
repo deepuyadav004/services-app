@@ -12,16 +12,13 @@ const query = gql`
             businessLists {
                 about
                 address
-                contactPerson
                 category {
-                ... on Category {
-                    name
-                    id
-                }
-                }
-                email
                 name
+                }
+                contactPerson
+                email
                 id
+                name
                 images {
                 url
                 }

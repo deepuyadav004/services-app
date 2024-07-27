@@ -30,7 +30,7 @@ export default function BusinessListByCategory() {
 
             <FlatList 
                 data={data}
-                renderItem={({item, index}) => (<BusinessListItem data={data} />)}
+                renderItem={({item, index}) => (<BusinessListItem data={item} />)}
             />
 
         </View>
