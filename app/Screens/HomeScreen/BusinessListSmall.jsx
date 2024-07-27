@@ -9,7 +9,7 @@ export default function BusinessListSmall({ data }) {
             <View style={styles.infoContainer} >
                 <Text style={{ fontSize: 17, fontFamily: 'outfit-medium' }} >{data?.name}</Text>
                 <Text style={{ fontSize: 13, fontFamily: 'outfit-small', color: Colors.GREY }} >{data?.contactPerson}</Text>
-                <Text style={{ fontSize: 10, fontFamily: 'outfit-small', padding: 3, color: Colors.PRIMARY, backgroundColor: Colors.PRIMARY_LIGHT, borderRadius: 3, alignSelf: 'flex-start', paddingHorizontal: 7 }} >{data?.category?.[0].name}</Text>
+                {/* <Text style={{ fontSize: 10, fontFamily: 'outfit-small', padding: 3, color: Colors.PRIMARY, backgroundColor: Colors.PRIMARY_LIGHT, borderRadius: 3, alignSelf: 'flex-start', paddingHorizontal: 7 }} >{data?.category?.[0].name}</Text> */}
             </View>
         </View>
     )

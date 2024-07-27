@@ -34,7 +34,7 @@ const fetchBusinessListByCategory = async (category) => {
             query: query,
             variables: { categoryName: category }
         });
-        console.log("adfas: ", data)
+        // console.log("adfas: ", data)
         return data;
     } catch (error) {
         console.error('Error fetching businessListByCategory.js:', error);

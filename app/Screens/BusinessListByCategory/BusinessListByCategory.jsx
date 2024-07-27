@@ -30,6 +30,7 @@ export default function BusinessListByCategory() {
             {data && data.length > 0 ?
                 <FlatList
                     data={data}
+                    showsVerticalScrollIndicator={false}
                     renderItem={({ item, index }) => (<BusinessListItem data={item} />)}
                     style={{ marginTop: 20 }}
                 />
