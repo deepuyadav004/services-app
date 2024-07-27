@@ -16,23 +16,24 @@ export default function BusinessListByCategory() {
         fetchBusinessListByCategory(param?.category).then(res => {
             setData(res?.businessLists);
         })
-        console.log("param: ", param)
+        // console.log("param: ", param)
     }, [])
 
     return (
         <View style={{ padding: 20, paddingTop: 30 }} >
-            <TouchableOpacity style={{display: 'flex', flexDirection:'row', alignItems:'center', gap:10}}
+            <TouchableOpacity style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10 }}
                 onPress={() => navigation.pop()}
             >
                 <Ionicons name="arrow-back" size={30} color={'black'} />
-                <Text style={{fontSize: 25, fontFamily: 'outfit-medium'}} >{param?.category}</Text>
+                <Text style={{ fontSize: 25, fontFamily: 'outfit-medium' }} >{param?.category}</Text>
             </TouchableOpacity>
-
-            <FlatList 
-                data={data}
-                renderItem={({item, index}) => (<BusinessListItem data={item} />)}
-            />
-
+            {data && data.length > 0 ?
+                <FlatList
+                    data={data}
+                    renderItem={({ item, index }) => (<BusinessListItem data={item} />)}
+                    style={{ marginTop: 20 }}
+                />
+                : <Text style={{fontFamily: 'outfit-regular', fontSize: 20, textAlign: 'center', marginTop: '20%'}} >No business found</Text>}
         </View>
     )
 }
