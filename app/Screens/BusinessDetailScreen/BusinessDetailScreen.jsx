@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView, FlatList } from 'react-native'
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView, FlatList, Modal } from 'react-native'
 import React, { useEffect, useState } from 'react'
 // import { useRoute } from '@react-navigation/native'
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -6,6 +6,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { Colors } from '@/constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import Header from '@/app/Components/Header';
+import BookingModel from './BookingModel'
 
 export default function BusinessDetailScreen() {
 
@@ -13,6 +14,7 @@ export default function BusinessDetailScreen() {
   const data = param.data;
   const navigation = useNavigation();
   const [isReadMore, setReadMore] = useState(true);
+  const [showModel, setShowModel] = useState(false);
 
   return (
     <View>
@@ -70,10 +72,19 @@ export default function BusinessDetailScreen() {
         <TouchableOpacity style={styles.messageBtn} >
           <Text style={{textAlign: 'center', fontFamily: 'outfit-medium', fontSize: 15}} >Message</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.bookingBtn} >
+        <TouchableOpacity style={styles.bookingBtn} onPress={() => setShowModel(true)} >
           <Text style={{textAlign: 'center', fontFamily: 'outfit-medium', fontSize: 15}} >Book Now</Text>
         </TouchableOpacity>
       </View>
+
+      <Modal
+        animationType='slide'
+        visible={showModel}
+      >
+        <BookingModel hideModel={() => setShowModel(false)} />
+
+      </Modal>
+
     </View>
   )
 }

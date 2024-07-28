@@ -4,6 +4,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import fetchBusinessListByCategory from '../../../APIs/businessListByCategory'
 import BusinessListItem from './BusinessListItem'
+import PageHeading from '../../Components/PageHeading'
 
 
 export default function BusinessListByCategory() {
@@ -21,12 +22,7 @@ export default function BusinessListByCategory() {
 
     return (
         <View style={{ padding: 20, paddingTop: 30 }} >
-            <TouchableOpacity style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10 }}
-                onPress={() => navigation.pop()}
-            >
-                <Ionicons name="arrow-back" size={30} color={'black'} />
-                <Text style={{ fontSize: 25, fontFamily: 'outfit-medium' }} >{param?.category}</Text>
-            </TouchableOpacity>
+            <PageHeading item={param?.category} />
             {data && data.length > 0 ?
                 <FlatList
                     data={data}
