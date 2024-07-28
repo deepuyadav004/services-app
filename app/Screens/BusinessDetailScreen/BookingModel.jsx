@@ -6,6 +6,8 @@ import { Colors } from '@/constants/Colors';
 import Header from '@/app/Components/Header';
 import addBooking from '../../../APIs/addBooking';
 import { useUser } from '@clerk/clerk-expo';
+import { format } from 'date-fns';
+import { enUS, fr } from 'date-fns/locale';
 
 export default function BookingModel({ businessId, hideModel }) {
 
@@ -54,7 +56,7 @@ export default function BookingModel({ businessId, hideModel }) {
         const data = {
             userName: user?.fullName,
             userEmail: user?.primaryEmailAddress?.emailAddress,
-            date: selectedDate,
+            date: format(selectedDate, 'PPP', { locale: enUS }),
             time: selectedTime,
             // note: note,
             businessId: businessId
