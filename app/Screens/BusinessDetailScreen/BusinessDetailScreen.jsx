@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView, FlatList, Modal } from 'react-native'
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView, FlatList, Modal, Linking } from 'react-native'
 import React, { useEffect, useState } from 'react'
 // import { useRoute } from '@react-navigation/native'
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -15,6 +15,10 @@ export default function BusinessDetailScreen() {
   const navigation = useNavigation();
   const [isReadMore, setReadMore] = useState(true);
   const [showModel, setShowModel] = useState(false);
+
+  const onMessageBtnClick = () => {
+    Linking.openURL('mailto:'+data?.email+"?subject:I am looking for your service&body=Hi, I need your service urgently how early can you arrive?")
+  }
 
   return (
     <View>
@@ -69,7 +73,7 @@ export default function BusinessDetailScreen() {
       </ScrollView>
 
       <View style={{display: 'flex', flexDirection: 'row', gap: 8}} >
-        <TouchableOpacity style={styles.messageBtn} >
+        <TouchableOpacity style={styles.messageBtn} onPress={() => onMessageBtnClick()} >
           <Text style={{textAlign: 'center', fontFamily: 'outfit-medium', fontSize: 15}} >Message</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.bookingBtn} onPress={() => setShowModel(true)} >
