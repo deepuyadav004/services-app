@@ -47,8 +47,8 @@ export default function BookingModel({ businessId, hideModel }) {
     const createBooking = () => {
         if (!selectedDate || !selectedTime) {
             ToastAndroid.show("Please select date and time properly", ToastAndroid.LONG);
-            console.log("date ", selectedDate)
-            console.log("time ", selectedTime)
+            // console.log("date ", selectedDate)
+            // console.log("time ", selectedTime)
             return;
         }
         // console.log("user: ", user);
@@ -67,6 +67,7 @@ export default function BookingModel({ businessId, hideModel }) {
         addBooking(data).then(res => {
             ToastAndroid.show("booking created successfully", ToastAndroid.LONG)
         })
+        hideModel()
     }
 
     return (

@@ -4,7 +4,7 @@ import { Colors } from '@/constants/Colors'
 import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-export default function BusinessListItem({ data }) {
+export default function BusinessListItem({ data, item }) {
 
   const navigation = useNavigation();
 
@@ -13,9 +13,11 @@ export default function BusinessListItem({ data }) {
       {data?.images?.[0]?.url && <Image source={{ uri: data?.images?.[0].url }} style={styles.imageStyle} />}
     
       <View style={styles.subContainer} >
-        <Text style={{fontFamily: 'outfit-regular', fontSize: 14, color: Colors.GREY}} >{data.contactPerson}</Text>
-        <Text style={{fontFamily: 'outfit-bold', fontSize: 15}} >{data.name}</Text>
-        <Text style={{fontFamily: 'outfit-regular', fontSize: 12, color: Colors.GREY}} > <Entypo name="location-pin" size={20} color={Colors.PRIMARY} /> {data.address}</Text>
+        <Text style={{fontFamily: 'outfit-regular', fontSize: 14, color: Colors.GREY}} >{data?.contactPerson}</Text>
+        <Text style={{fontFamily: 'outfit-bold', fontSize: 15}} >{data?.name}</Text>
+        <Text style={{fontFamily: 'outfit-regular', fontSize: 12, color: Colors.GREY}} > <Entypo name="location-pin" size={20} color={Colors.PRIMARY} /> {data?.address}</Text>
+
+        {item?.id && <Text>Show Booking</Text>}
       </View>
     </TouchableOpacity>
   )

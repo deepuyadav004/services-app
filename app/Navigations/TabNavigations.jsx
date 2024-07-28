@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 // import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { Colors } from '../../constants/Colors'
 import HomeNavigation from './HomeNavigation'
+import BookingNavigation from './BookingNavigation'
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigations() {
@@ -38,7 +39,7 @@ export default function TabNavigations() {
       }}
     >
       <Tab.Screen name="Home" component={HomeNavigation} options={{headerShown: false}} />
-      <Tab.Screen name="Booking" component={BookingScreen} options={{headerShown: false}} />
+      <Tab.Screen name="Booking" component={BookingNavigation} options={{headerShown: false}} />
       <Tab.Screen name="Profile" component={ProfileScreen } options={{headerShown: false}} />
     </Tab.Navigator> 
   )
