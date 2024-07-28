@@ -1,16 +1,19 @@
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, TextInput, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, FlatList, TextInput, ScrollView, ToastAndroid } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import CalendarPicker from "react-native-calendar-picker";
 import { Colors } from '@/constants/Colors';
 import Header from '@/app/Components/Header';
+import addBooking from '../../../APIs/addBooking';
+import { useUser } from '@clerk/clerk-expo';
 
-export default function BookingModel({ hideModel }) {
+export default function BookingModel({ businessId, hideModel }) {
 
     const [timelist, setTimeList] = useState([]);
-    const [selectedTime, setSelectedTime] = useState(null);
+    const [selectedTime, setSelectedTime] = useState();
     const [selectedDate, setSelectedDate] = useState();
     const [note, setNote] = useState('');
+    const { user } = useUser();
 
     useEffect(() => {
         getTimeList();
@@ -39,6 +42,31 @@ export default function BookingModel({ hideModel }) {
         setTimeList(timeList)
     }
 
+    const createBooking = () => {
+        if (!selectedDate || !selectedTime) {
+            ToastAndroid.show("Please select date and time properly", ToastAndroid.LONG);
+            console.log("date ", selectedDate)
+            console.log("time ", selectedTime)
+            return;
+        }
+        // console.log("user: ", user);
+        // return;
+        const data = {
+            userName: user?.fullName,
+            userEmail: user?.primaryEmailAddress?.emailAddress,
+            date: selectedDate,
+            time: selectedTime,
+            // note: note,
+            businessId: businessId
+        }
+
+        // console.log(data)
+
+        addBooking(data).then(res => {
+            ToastAndroid.show("booking created successfully", ToastAndroid.LONG)
+        })
+    }
+
     return (
         <ScrollView style={{ padding: 20 }} >
             <TouchableOpacity style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 20 }}
@@ -51,7 +79,7 @@ export default function BookingModel({ hideModel }) {
             <Header text={"Select Date"} />
             <View style={styles.calendarContainer} >
                 <CalendarPicker
-                    onDateChange={() => setSelectedDate(this.onDateChange)}
+                    onDateChange={(date) => setSelectedDate(date)}
                     width={300}
                     minDate={Date.now()}
                     todayBackgroundColor={Colors.BLACK}
@@ -62,29 +90,29 @@ export default function BookingModel({ hideModel }) {
             </View>
 
             {/* Time Selection */}
-            
-            <View style={{marginTop: 20}} >
+
+            <View style={{ marginTop: 20 }} >
                 <Header text={"Select Time Slot"} />
-                <FlatList 
+                <FlatList
                     data={timelist}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
-                    renderItem={({item, index}) => (
-                        <TouchableOpacity style={{marginRight: 10}} onPress={() => setSelectedTime(item.time)} >
-                            <Text style={ selectedTime==item.time ? styles.selectedTime : styles.unselectedTime} >{item.time}</Text>
+                    renderItem={({ item, index }) => (
+                        <TouchableOpacity style={{ marginRight: 10 }} onPress={() => setSelectedTime(item.time)} >
+                            <Text style={selectedTime == item.time ? styles.selectedTime : styles.unselectedTime} >{item.time}</Text>
                         </TouchableOpacity>
                     )}
                 />
             </View>
 
             {/* Note section */}
-            <View style={{paddingTop: 20}} >
+            <View style={{ paddingTop: 20 }} >
                 <Header text={"Write note"} />
                 <TextInput placeholder='Note' numberOfLines={4} multiline={true} style={styles.noteTextArea} onChange={(text) => setNote(text)} />
             </View>
 
             {/* Confirmation button */}
-            <TouchableOpacity style={{marginTop: 15, marginBottom: 30}} >
+            <TouchableOpacity style={{ marginTop: 15, marginBottom: 30 }} onPress={() => createBooking()} >
                 <Text style={styles.confirmBtn} >Confirm & Book</Text>
             </TouchableOpacity>
         </ScrollView>
