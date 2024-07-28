@@ -1,28 +1,28 @@
-import { View, Text, Image, FlatList } from 'react-native'
+import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useUser } from '@clerk/clerk-expo'
 import { Colors } from '@/constants/Colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
+import Logout from '@/app/Components/Logout'
 
 export default function ProfileScreen() {
 
   const user = useUser();
+  const navigation  = useNavigation();
 
   const profileMenu = [
     {
       id: 1,
       name: "Home",
-      icon: "home"
+      icon: "home",
+      page: 'home'
     },
     {
       id: 2,
       name: "My Booking",
-      icon: "bookmark-sharp"
-    },
-    {
-      id: 3,
-      name: "Logout",
-      icon: "log-out"
+      icon: "bookmark-sharp",
+      page: 'booking-screen'
     },
     {
       id: 4,
@@ -47,12 +47,14 @@ export default function ProfileScreen() {
         <FlatList
           data={profileMenu}
           renderItem={({ item, index }) => (
-            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 30, paddingHorizontal: 50 }} >
+            <TouchableOpacity onPress={() => navigation.push(item?.page)} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 30, paddingHorizontal: 50 }} >
               <Ionicons name={item.icon} size={35} color={Colors.PRIMARY} />
               <Text style={{ fontFamily: 'outfit-regular', fontSize: 15 }} >{item.name}</Text>
-            </View>
+            </TouchableOpacity>
           )}
         />
+
+        <Logout />
       </View>
     </View>
   )

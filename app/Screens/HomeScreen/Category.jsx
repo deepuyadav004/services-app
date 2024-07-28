@@ -28,23 +28,24 @@ export default function Category() {
   return (
     <View>
       <Header text={"Category"} viewAll={true} />
-
+      <View>
       <FlatList
         data={data}
         numColumns={4}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item, index }) => (
-          <TouchableOpacity style={{ marginRight: 20, flex: 1, alignItems: 'flex-start' }}
+          <TouchableOpacity style={{ marginRight: 20, alignItems: 'flex-start' }}
             onPress={() => navigation.push('business-list', {category: item?.name})}
           >
             <View style={{ backgroundColor: Colors.LIGHT_GREY, borderRadius: 100 }} >
               <Image source={{ uri: item?.icon?.url }} style={styles.sliderImage} />
             </View>
-            <Text style={{ marginTop: 5, fontFamily: 'outfit-medium' }} >{item?.name}</Text>
+            <Text style={{ marginTop: 5, fontFamily: 'outfit-medium' }} numberOfLines={1} >{item?.name}</Text>
           </TouchableOpacity>
         )}
 
       />
+      </View>
     </View>
   )
 }

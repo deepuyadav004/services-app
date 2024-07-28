@@ -9,6 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../constants/Colors'
 import HomeNavigation from './HomeNavigation'
 import BookingNavigation from './BookingNavigation'
+import ProfileNavigation from './ProfileNavigation'
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigations() {
@@ -40,7 +41,7 @@ export default function TabNavigations() {
     >
       <Tab.Screen name="Home" component={HomeNavigation} options={{headerShown: false}} />
       <Tab.Screen name="Booking" component={BookingNavigation} options={{headerShown: false}} />
-      <Tab.Screen name="Profile" component={ProfileScreen } options={{headerShown: false}} />
+      <Tab.Screen name="Profile" component={ProfileNavigation} options={{headerShown: false}} />
     </Tab.Navigator> 
   )
 }

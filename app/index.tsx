@@ -4,6 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import TabNavigations from './Navigations/TabNavigations'
 import { useFonts } from 'expo-font';
+import HomeScreen from './Screens/HomeScreen/HomeScreen';
+import HomeNavigation from './Navigations/HomeNavigation';
 
 const EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_test_dXByaWdodC1qZW5uZXQtNDIuY2xlcmsuYWNjb3VudHMuZGV2JA"
 const publishableKey = EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
