@@ -24,7 +24,7 @@ export default function BusinessDetailScreen() {
           onPress={() => (navigation.pop())}
 
         >
-          <Ionicons name="arrow-back" size={30} color={'black'} />
+          <Ionicons name="arrow-back" size={50} color={'black'} />
         </TouchableOpacity>
 
         {data?.images?.[0]?.url && <Image source={{ uri: data?.images?.[0]?.url }} style={{ width: '100%', height: 300 }} />}

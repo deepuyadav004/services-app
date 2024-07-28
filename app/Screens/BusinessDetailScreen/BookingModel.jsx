@@ -75,7 +75,7 @@ export default function BookingModel({ businessId, hideModel }) {
             <TouchableOpacity style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 20 }}
                 onPress={() => hideModel()}
             >
-                <Ionicons name="arrow-back" size={30} color={'black'} />
+                <Ionicons name="arrow-back" size={50} color={'black'} />
                 <Text style={{ fontSize: 25, fontFamily: 'outfit-medium' }} >{"Booking"}</Text>
             </TouchableOpacity>
 
