@@ -28,8 +28,8 @@ const Login = () => {
   }, []);
 
   return (
-    <View>
-      <Text>Login</Text>
+    <View style={{backgroundColor: Colors.PRIMARY,}} >
+      {/* <Text style={{padding:10}} ></Text> */}
 
       <View style={styles.subContainer}>
         <Text style={{fontSize: 27, color: Colors.WHITE, textAlign: 'center'}} >
@@ -44,6 +44,7 @@ const Login = () => {
           <Text style={{fontSize: 17, color: Colors.PRIMARY, textAlign: 'center'}} >Let's get strted</Text>
         </TouchableOpacity>
       </View>
+
     </View>
   )
 }
@@ -51,12 +52,12 @@ const Login = () => {
 const styles = StyleSheet.create({
     subContainer: {
         width: '100%',
-        backgroundColor: Colors.PRIMARY,
-        height: '70%',
-        marginTop: -20,
+        height: '100%',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        padding: 20
+        padding: 20,
+        justifyContent: 'center'
+
     },
     button: {
       padding: 15,
