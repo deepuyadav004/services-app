@@ -16,7 +16,7 @@ export default function BusinessListItem({ data, item }) {
         <Text style={{fontFamily: 'outfit-bold', fontSize: 15}} >{data?.name}</Text>
         {(item?.id == undefined) && <Text style={{fontFamily: 'outfit-regular', fontSize: 12, color: Colors.GREY}} > <Entypo name="location-pin" size={20} color={Colors.PRIMARY} /> {data?.address}</Text>}
         <View style={{display: 'flex', alignItems: 'flex-start'}} >
-        {item?.id && <Text style={{fontFamily:'outfit-regular', backgroundColor: (item.bookingStatus=='completed' ? Colors.GREEN_LIGHT : Colors.PRIMARY_LIGHT), color: (item.bookingStatus=='completed' ? Colors.GREEN : Colors.PRIMARY), paddingHorizontal: 8}} >{item.bookingStatus}</Text>}
+        {item?.id && <Text style={{fontFamily:'outfit-regular', backgroundColor: (item.bookingStatus=='completed' ? Colors.GREEN_LIGHT : (item.bookingStatus=='booked' ? Colors.RED_LIGHT : Colors.PRIMARY_LIGHT)), color: (item.bookingStatus=='completed' ? Colors.GREEN : (item.bookingStatus=='booked' ? Colors.RED_DARK : Colors.PRIMARY)), paddingHorizontal: 8}} >{item.bookingStatus}</Text>}
         </View>
         
       </View>
