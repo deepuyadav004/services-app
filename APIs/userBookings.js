@@ -39,6 +39,7 @@ const userBookings = async (userEmail) => {
             query: query,
             variables: { userEmail: userEmail }
         });
+        // console.log("data: ", data)
         return data;
     } catch (error) {
         console.error('Error fetching businessListByCategory.js:', error);

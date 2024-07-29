@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, RefreshControl } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import userBookings from '@/APIs/userBookings';
 import { useUser } from '@clerk/clerk-expo';
@@ -21,21 +21,23 @@ export default function BookingScreen() {
     userBookings(user?.primaryEmailAddress?.emailAddress).then(res => {
       setData(res?.bookings)
       setLoading(false)
-      // console.log("in function: ", Loading)
+      // console.log("in function: ")
     });
   }
 
   return (
-    <View style={{padding: 20, paddingTop: 40}} >
-      <Text style={{fontFamily: 'outfit-medium', fontSize: 26}} >My Bookings</Text>
+    <View style={{ padding: 20, paddingTop: 40 }} >
+      <Text style={{ fontFamily: 'outfit-medium', fontSize: 26 }} >My Bookings</Text>
 
       <View>
         <FlatList
-          onRefresh={() => dataRenderer()}
-          refreshing={Loading}
           showsVerticalScrollIndicator={false}
           data={data}
-          renderItem={({item, index}) => (
+          extraData={data}
+          refreshing={Loading}
+          onRefresh={dataRenderer} 
+          // keyExtractor={(item) => item.id}
+          renderItem={({ item, index }) => (
             <BusinessListItem data={item.business} item={item} />
           )}
         />
