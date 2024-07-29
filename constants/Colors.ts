@@ -28,5 +28,7 @@ export const Colors = {
   WHITE: '#ffffff',
   LIGHT_GREY: '#EDEDED',
   PRIMARY_LIGHT: '#dbb8f4',
-  GREY: '#b0b0b0'
+  GREY: '#b0b0b0',
+  GREEN: '#006400',
+  GREEN_LIGHT: '#d0f0c0'
 };

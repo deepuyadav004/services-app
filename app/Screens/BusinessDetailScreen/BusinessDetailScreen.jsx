@@ -17,12 +17,12 @@ export default function BusinessDetailScreen() {
   const [showModel, setShowModel] = useState(false);
 
   const onMessageBtnClick = () => {
-    Linking.openURL('mailto:'+data?.email+"?subject:I am looking for your service&body=Hi, I need your service urgently how early can you arrive?")
+    Linking.openURL('mailto:' + data?.email + "?subject:I am looking for your service&body=Hi, I need your service urgently how early can you arrive?")
   }
 
   return (
     <View>
-      <ScrollView style={{height: '92%'}} >
+      <ScrollView style={{ height: '92%' }} >
         <TouchableOpacity
           style={styles.backBtnContainer}
           onPress={() => (navigation.pop())}
@@ -72,23 +72,23 @@ export default function BusinessDetailScreen() {
         </View>
       </ScrollView>
 
-      <View style={{display: 'flex', flexDirection: 'row', gap: 8}} >
+      <View style={{ display: 'flex', flexDirection: 'row', gap: 8 }} >
         <TouchableOpacity style={styles.messageBtn} onPress={() => onMessageBtnClick()} >
-          <Text style={{textAlign: 'center', fontFamily: 'outfit-medium', fontSize: 15}} >Message</Text>
+          <Text style={{ textAlign: 'center', fontFamily: 'outfit-medium', fontSize: 15 }} >Message</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.bookingBtn} onPress={() => setShowModel(true)} >
-          <Text style={{textAlign: 'center', fontFamily: 'outfit-medium', fontSize: 15}} >Book Now</Text>
+          <Text style={{ textAlign: 'center', fontFamily: 'outfit-medium', fontSize: 15 }} >Book Now</Text>
         </TouchableOpacity>
       </View>
+      {data?.id &&
+        <Modal
+          animationType='slide'
+          visible={showModel}
+        >
+          <BookingModel businessId={data.id} hideModel={() => setShowModel(false)} />
 
-      <Modal
-        animationType='slide'
-        visible={showModel}
-      >
-        <BookingModel businessId={data.id} hideModel={() => setShowModel(false)} />
-
-      </Modal>
-
+        </Modal>
+      }
     </View>
   )
 }

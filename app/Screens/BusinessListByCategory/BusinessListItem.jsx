@@ -11,13 +11,14 @@ export default function BusinessListItem({ data, item }) {
   return (
     <TouchableOpacity style={styles.container} onPress={() => navigation.push('business-detail', {data: data})} >
       {data?.images?.[0]?.url && <Image source={{ uri: data?.images?.[0].url }} style={styles.imageStyle} />}
-    
       <View style={styles.subContainer} >
         <Text style={{fontFamily: 'outfit-regular', fontSize: 14, color: Colors.GREY}} >{data?.contactPerson}</Text>
         <Text style={{fontFamily: 'outfit-bold', fontSize: 15}} >{data?.name}</Text>
-        <Text style={{fontFamily: 'outfit-regular', fontSize: 12, color: Colors.GREY}} > <Entypo name="location-pin" size={20} color={Colors.PRIMARY} /> {data?.address}</Text>
-
-        {item?.id && <Text>Show Booking</Text>}
+        {(item?.id == undefined) && <Text style={{fontFamily: 'outfit-regular', fontSize: 12, color: Colors.GREY}} > <Entypo name="location-pin" size={20} color={Colors.PRIMARY} /> {data?.address}</Text>}
+        <View style={{display: 'flex', alignItems: 'flex-start'}} >
+        {item?.id && <Text style={{fontFamily:'outfit-regular', backgroundColor: (item.bookingStatus=='completed' ? Colors.GREEN_LIGHT : Colors.PRIMARY_LIGHT), color: (item.bookingStatus=='completed' ? Colors.GREEN : Colors.PRIMARY), paddingHorizontal: 8}} >{item.bookingStatus}</Text>}
+        </View>
+        
       </View>
     </TouchableOpacity>
   )
